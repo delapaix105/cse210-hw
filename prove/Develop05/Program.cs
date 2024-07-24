@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 public class Program
 {
@@ -15,38 +16,53 @@ public class Program
         // Main loop
         while (true)
         {
-            Console.WriteLine("1. Create New Goal");
-            Console.WriteLine("2. Record Event");
-            Console.WriteLine("3. Show Goals");
-            Console.WriteLine("4. Show Score");
-            Console.WriteLine("5. Save Goals");
-            Console.WriteLine("6. Load Goals");
-            Console.WriteLine("7. Exit");
-
-            string choice = Console.ReadLine();
-
-            switch (choice)
+            try
             {
-                case "1":
-                    CreateNewGoal();
-                    break;
-                case "2":
-                    RecordEvent();
-                    break;
-                case "3":
-                    ShowGoals();
-                    break;
-                case "4":
-                    ShowScore();
-                    break;
-                case "5":
-                    SaveGoals();
-                    break;
-                case "6":
-                    LoadGoals();
-                    break;
-                case "7":
-                    return;
+                Console.WriteLine("1. Create New Goal");
+                Console.WriteLine("2. Record Event");
+                Console.WriteLine("3. Show Goals");
+                Console.WriteLine("4. Show Score");
+                Console.WriteLine("5. Save Goals");
+                Console.WriteLine("6. Load Goals");
+                Console.WriteLine("7. Exit");
+
+                string choice = Console.ReadLine();
+                if (string.IsNullOrEmpty(choice))
+                {
+                    Console.WriteLine("Invalid input. Please select an option from the menu.");
+                    continue;
+                }
+
+                switch (choice)
+                {
+                    case "1":
+                        CreateNewGoal();
+                        break;
+                    case "2":
+                        RecordEvent();
+                        break;
+                    case "3":
+                        ShowGoals();
+                        break;
+                    case "4":
+                        ShowScore();
+                        break;
+                    case "5":
+                        SaveGoals();
+                        break;
+                    case "6":
+                        LoadGoals();
+                        break;
+                    case "7":
+                        return;
+                    default:
+                        Console.WriteLine("Invalid option. Please select a valid menu option.");
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
             }
         }
     }
